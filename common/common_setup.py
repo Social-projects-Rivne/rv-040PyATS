@@ -1,15 +1,11 @@
-# Example
-# -------
-#
-#   an example common setup
+"""Common setup"""
 
-# import the aetest module
 
 from pyats import aetest
 
 
-# define a common setup section by inherting from aetest
 class ScriptCommonSetup(aetest.CommonSetup):
+    # define a common setup section by inherting from aetest
 
     @aetest.subsection
     def check_script_arguments(self):

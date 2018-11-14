@@ -1,15 +1,11 @@
-# Example
-# -------
-#
-#   an example common cleanup
+"""Common cleanup"""
 
-# import the aetest module
 
 from pyats import aetest
 
 
-# define a common cleanup section by inherting from aetest
 class ScriptCommonCleanup(aetest.CommonCleanup):
+    # define a common cleanup section by inherting from aetest
 
     @aetest.subsection
     def remove_testbed_configurations(self):
