@@ -1,0 +1,31 @@
+#devices:
+#  vm:
+#    os: 'linux'
+#    tacacs:
+#      username: foo
+#    passwords:
+#      linux: pass
+#    connections:
+#      linux:
+#        protocol: sftp
+#        ip: 127.0.0.1
+#        port: 2222
+#    type: 'linux'
+
+devices:
+  vm:
+    connections:
+      linux:
+        protocol: sftp
+        ip: localhost
+        port: 2222
+    passwords:
+      enable: pass
+      line: pass
+      tacacs: pass
+    tacacs:
+      username: foo
+    type: 'linux'
+
+testbed:
+  name: pyATS_Example_Testbed

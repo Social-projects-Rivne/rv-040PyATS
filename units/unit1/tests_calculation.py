@@ -4,10 +4,7 @@ import argparse
 import sys
 from pyats import aetest
 
-# sys.path.append('/home/class/ohrytsiuk/git/rv-040PyATS/')
-sys.path.append('/home/grant/python/rv-040PyATS/')
-
-from modules.calculation import add, divide
+import calculation
 
 
 class UnitTest(aetest.Testcase):
@@ -20,7 +17,7 @@ class UnitTest(aetest.Testcase):
     @aetest.test
     def test_add(self, num1=3, num2=0):
         """Test calculation function add"""
-        result = add(num1, num2)
+        result = calculation.add(num1, num2)
         if result < 0:
             self.skipped("Result less than 0")
         assert result == sum((num1, num2))
@@ -29,7 +26,7 @@ class UnitTest(aetest.Testcase):
     def test_divide(self, num1=3, num2=0):
         """Test calculation function divine"""
         try:
-            result = divide(num1, num2)
+            result = calculation.divide(num1, num2)
             if result < 0:
                 self.skipped("Result less than 0")
             assert result == num1 / num2
@@ -43,7 +40,7 @@ class UnitTest(aetest.Testcase):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="standalone parser")
+    parser = argparse.ArgumentParser(description="Standalone parser")
     parser.add_argument('-num1', type=int, required=False)
     parser.add_argument('-num2', type=int, required=False)
 

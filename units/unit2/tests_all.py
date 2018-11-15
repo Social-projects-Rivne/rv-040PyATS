@@ -1,3 +1,5 @@
+"""For running tasks in 4 threads"""
+
 import argparse
 import sys
 import time
@@ -9,30 +11,28 @@ from pyats.easypy import Task
 def main(runtime):
 
     parser = argparse.ArgumentParser(description="Standalone parser")
-
     parser.add_argument('-num1', type=float, required=True)
     parser.add_argument('-num2', type=float, required=True)
-
     args, sys.argv[1:] = parser.parse_known_args(sys.argv[1:])
 
     # using Task class to create a two tasks
     # (max runtime = 60*5 seconds = 5 minutes)
-    task_multiplication = Task(testscript='/home/grant/python/rv-040PyATS/jobs/multiplication.py',
+    task_multiplication = Task(testscript='/home/grant/python/rv-040PyATS/units/unit2/multiplication.py',
                                runtime=runtime,
                                taskid='multiplication',
                                num1=args.num1,
                                num2=args.num2)
-    task_division = Task(testscript='/home/grant/python/rv-040PyATS/jobs/division.py',
+    task_division = Task(testscript='/home/grant/python/rv-040PyATS/units/unit2/division.py',
                          runtime=runtime,
                          taskid='division',
                          num1=args.num1,
                          num2=args.num2)
-    task_addition = Task(testscript='/home/grant/python/rv-040PyATS/jobs/addition.py',
+    task_addition = Task(testscript='/home/grant/python/rv-040PyATS/units/unit2/addition.py',
                          runtime=runtime,
                          taskid='addition',
                          num1=args.num1,
                          num2=args.num2)
-    task_subtraction = Task(testscript='/home/grant/python/rv-040PyATS/jobs/subtraction.py',
+    task_subtraction = Task(testscript='/home/grant/python/rv-040PyATS/units/unit2/subtraction.py',
                             runtime=runtime,
                             taskid='subtraction',
                             num1=args.num1,

@@ -1,4 +1,4 @@
-#tbj.py
+"""Testbed file for terminal running"""
 
 from ats.easypy.tasks import run
 
