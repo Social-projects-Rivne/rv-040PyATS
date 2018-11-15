@@ -1,40 +1,42 @@
 import argparse
 import time
-from datetime import datetime, timedelta
-
+from datetime import timedelta
+import sys
 import os
 
 from pyats.easypy.tasks import Task
 
 dir_name = os.path.dirname(__file__)
 
+parser = argparse.ArgumentParser(description="my custom parser")
+parser.add_argument('-num1', type = int, required=True)
+parser.add_argument('-num2', type = int, required=True)
+
 def main(runtime):
 
-    parser = argparse.ArgumentParser(description="standalone parser")
-    parser.add_argument('-num1', type=int, required=True)
-    parser.add_argument('-num2', type=int, required=True)
+    args, sys.argv[1:] = parser.parse_known_args(sys.argv[1:])
 
     #using Task class to create a two tasks
     # max runtime = 60*5 sec = 5 min
-    task_add = Task(testscript = os.path.join(dir_name, '/tasktwo/jobs/addition.py'),
+    task_add = Task(testscript = (os.path.join(dir_name + '/jobs/addition.py')),
                     runtime=runtime,
                     taskid='add',
                     num1=args.num1,
                     num2=args.num2)
 
-    task_sub = Task(testscript = os.path.join(dir_name, '/tasktwo/jobs/substraction.py'),
+    task_sub = Task(testscript = (os.path.join(dir_name + '/jobs/substraction.py')),
                     runtime=runtime,
                     taskid='sub',
                     num1=args.num1,
                     num2=args.num2)
 
-    task_mult = Task(testscript = os.path.join(dir_name, '/tasktwo/jobs/multiplication.py'),
+    task_mult = Task(testscript = (os.path.join(dir_name + '/jobs/multiplication.py')),
                     runtime=runtime,
                     taskid='sub',
                     num1=args.num1,
                     num2=args.num2)
 
-    task_div = Task(testscript = os.path.join(dir_name, '/tasktwo/jobs/division.py'),
+    task_div = Task(testscript =(os.path.join(dir_name + '/jobs/division.py')),
                     runtime=runtime,
                     taskid='sub',
                     num1=args.num1,
