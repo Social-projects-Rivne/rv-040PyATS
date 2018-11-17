@@ -1,0 +1,21 @@
+devices:
+  DESKTOP-K0K4BRM:
+    os: 'linux'
+    passwords:
+      linux: vagrant
+    connections:
+      defaults:
+        class: 'unicon.Unicon'
+      linux:
+        protocol: ssh
+        ip: 192.169.0.104
+        command: "ssh vagrant@192.169.0.104"
+    type: 'linux'
+
+testbed:
+  servers:
+    server_alias:
+      server: dron.cpp
+      address: 192.169.0.104
+      username: vagrant
+      password: vagrant
