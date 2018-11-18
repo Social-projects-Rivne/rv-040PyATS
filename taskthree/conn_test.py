@@ -16,12 +16,12 @@ class Smoke(aetest.Testcase):
     def connect(self, testbed):
         self.vm = testbed.devices['DESKTOP-K0K4BRM']
         self.vm.connect()
-        self.vm.connect(start="ssh vagrant@192.168.0.104")
+        self.vm.connect(start="ssh vagrant@192.169.0.104")
 
     @test
     def test_one(self):
         self.vm.execute('DESKTOP-K0K4BRM')
-        self.vm.ping('192.168.0.104')
+        self.vm.ping('192.169.0.104')
 
     @test
     def test_copy_files_from_ssh(self):
