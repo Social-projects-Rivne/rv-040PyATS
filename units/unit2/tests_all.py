@@ -1,6 +1,7 @@
 """For running tasks in 4 threads"""
 
 import argparse
+import os
 import sys
 import time
 from datetime import timedelta
@@ -17,22 +18,22 @@ def main(runtime):
 
     # using Task class to create a two tasks
     # (max runtime = 60*5 seconds = 5 minutes)
-    task_multiplication = Task(testscript='/home/grant/python/rv-040PyATS/units/unit2/multiplication.py',
+    task_multiplication = Task(testscript=os.path.dirname(__file__) + '/multiplication.py',
                                runtime=runtime,
                                taskid='multiplication',
                                num1=args.num1,
                                num2=args.num2)
-    task_division = Task(testscript='/home/grant/python/rv-040PyATS/units/unit2/division.py',
+    task_division = Task(testscript=os.path.dirname(__file__) + '/division.py',
                          runtime=runtime,
                          taskid='division',
                          num1=args.num1,
                          num2=args.num2)
-    task_addition = Task(testscript='/home/grant/python/rv-040PyATS/units/unit2/addition.py',
+    task_addition = Task(testscript=os.path.dirname(__file__) + '/addition.py',
                          runtime=runtime,
                          taskid='addition',
                          num1=args.num1,
                          num2=args.num2)
-    task_subtraction = Task(testscript='/home/grant/python/rv-040PyATS/units/unit2/subtraction.py',
+    task_subtraction = Task(testscript=os.path.dirname(__file__) + '/subtraction.py',
                             runtime=runtime,
                             taskid='subtraction',
                             num1=args.num1,
@@ -43,7 +44,7 @@ def main(runtime):
     task_addition.start()
     task_subtraction.start()
     # poll for tasks to finish (max of 5 minutes)
-    counter = timedelta(minutes=5)
+    counter = timedelta(minutes=1)
     while counter:
         # check if processes are alive, if so, continue to wait
         if task_multiplication.is_alive() \

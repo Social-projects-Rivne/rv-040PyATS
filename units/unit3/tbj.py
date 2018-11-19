@@ -1,6 +1,10 @@
 """Testbed file for terminal running"""
+import os
 
-from ats.easypy.tasks import run
+from pyats.easypy.tasks import run
+
 
 def main():
-    run(testscript='/home/class/ohrytsiuk/git/rv-040PyATS/vm/tb.py')
+    run(testscript=os.path.dirname(__file__) + '/tb.py')
+
+

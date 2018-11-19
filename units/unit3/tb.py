@@ -1,41 +1,45 @@
 """Testbed file for testing"""
 
+import os
 from pyats import aetest
+
 from pyats.topology import loader
-from pyats.utils.fileutils import FileUtils
+from pyats.utils.fileutils.plugins.linux.fileutils import FileUtils
 
 
 class UnitTest(aetest.Testcase):
+    """Class for testing"""
 
-    # @aetest.setup
-    # def connect(self, testbed):
-    #     self.vm = testbed.devices['vm']
-    #     self.vm.connect()
-    #     self.vm.connect(via='linux', alias="second")
-
-    # @aetest.test
-    # def test_one(self):
-    #     self.vm.execute('hostname')
-    #     self.vm.ping('8.8.8.8')
-    #     self.vm.default.execute('hostname')
-    #     self.vm.second.execute('hostname')
-
-    # @aetest.test
-    # def test_copy_from_vm(self, testbed):
-    #     futils = FileUtils.from_device(testbed.devices['vm'])
+    @aetest.setup
+    def connect(self, testbed):
+        """Set up"""
+        # self.vm = testbed.devices['vm']
+        # self.vm.connect(via='sftp', alias="second")
+        pass
 
     @aetest.test
     def test_copy_from_pc(self, testbed):
-        futils = FileUtils(testbed=testbed.devices['vm'])
-        futils.copyfile(source='file:/home/grant/python/rv-040PyATS/units/unit3/readme.md',
-                        destination='sftp://localhost/upload',
-                        timeout_seconds=120)
+        """Copy file from localhost to linux virtual machine using sftp"""
+        with FileUtils(testbed=testbed) as futils:
+            futils.copyfile(source='file:/home/grant/python/123.py',
+                            destination='sftp://server_alias:2222/upload/123.py',
+                            timeout_seconds=120)
 
-    # @aetest.cleanup
-    # def disconnect(self):
-    #     self.vm.disconnect_all()
+    @aetest.test
+    def test_copy_from_vm(self, testbed):
+        """Copy file from linux virtual machine to localhost using sftp"""
+        with FileUtils(testbed=testbed) as futils:
+            futils.copyfile(source='sftp://server_alias:2222/upload/123.py',
+                            destination='file:/home/grant/123.py',
+                            timeout_seconds=120)
+
+    @aetest.cleanup
+    def disconnect(self):
+        """tear down"""
+        # self.vm.disconnect_all()
+        pass
 
 
 if __name__ == '__main__':
-    testbed = loader.load('docker-env.yaml')
+    testbed = loader.load(os.path.dirname(__file__) + '/docker-env.yaml')
     aetest.main(testbed=testbed)

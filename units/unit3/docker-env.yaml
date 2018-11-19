@@ -15,17 +15,16 @@
 devices:
   vm:
     connections:
-      linux:
-        protocol: sftp
-        ip: localhost
-        port: 2222
+      sftp:
+        command: 'sftp -P 2222 foo@127.0.0.1'
     passwords:
       enable: pass
-      line: pass
-      tacacs: pass
-    tacacs:
-      username: foo
     type: 'linux'
 
 testbed:
-  name: pyATS_Example_Testbed
+  servers:
+    server_alias:
+      server: myserver.domain.com
+      address: 127.0.0.1
+      username: foo
+      password: pass
