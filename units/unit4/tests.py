@@ -24,7 +24,7 @@ class UnitTest(aetest.Testcase):
 
     @aetest.test.loop(number=get_value)
     def check(self, number):
-        print(f'number: {number}')
+        print('number: {}'.format(number))
 
     # @aetest.test
     # def check(self, number):
