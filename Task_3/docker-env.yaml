@@ -1,0 +1,16 @@
+devices:
+  vm:
+    connections:
+      sftp:
+        command: 'sftp -P 2222 foo@127.0.0.1'
+    passwords:
+      enable: pass
+    type: 'linux'
+
+testbed:
+  servers:
+    server_alias:
+      server: myserver.domain.com
+      address: 127.0.0.1
+      username: foo
+      password: pass
