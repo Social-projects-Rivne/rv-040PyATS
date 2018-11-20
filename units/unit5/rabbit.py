@@ -1,25 +1,29 @@
-# rabbit.py
-import argparse
-import sys
+"""rabbit.py"""
+
 from pyats import aetest
 
 
-class SmokeTest(aetest.Testcase):
+class InitTest(aetest.Testcase):
+    """Main class for testing"""
 
     @aetest.setup
     def setup(self):
+        """Setup before tests"""
         print("A setup of smoke test")
 
     @aetest.test
     def test_1(self, word):
+        """Print word"""
         print(f'Test #1: {word}')
 
     @aetest.test
     def test_2(self, word):
+        """Print word"""
         print(f'Test #2: {word}')
 
     @aetest.cleanup
     def cleanup(self):
+        """CleanUp after tests"""
         print("A cleanup of smoke test")
 
 

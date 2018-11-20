@@ -10,7 +10,9 @@ from pyats.easypy import Task
 
 
 def main(runtime):
+    """Main function for running test in threads"""
 
+    # parser arguments for command line
     parser = argparse.ArgumentParser(description="Standalone parser")
     parser.add_argument('-num1', type=float, required=True)
     parser.add_argument('-num2', type=float, required=True)
@@ -67,4 +69,4 @@ def main(runtime):
         task_subtraction.terminate()
         task_subtraction.join()
         # raise exception
-        raise TimeoutError('Not all tasks finished in 5 minutes!')
+        raise TimeoutError('Not all tasks finished in 1 minutes!')

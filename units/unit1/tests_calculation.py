@@ -8,6 +8,7 @@ import calculation
 
 
 class UnitTest(aetest.Testcase):
+    """Main class for testing"""
 
     @aetest.setup
     def setup(self):
@@ -40,12 +41,10 @@ class UnitTest(aetest.Testcase):
 
 
 if __name__ == '__main__':
+    # parser arguments for command line
     parser = argparse.ArgumentParser(description="Standalone parser")
     parser.add_argument('-num1', type=int, default=3, required=False)
     parser.add_argument('-num2', type=int, default=0, required=False)
-
-    # do the parsing
-    # always use parse_known_args, as aetest needs to parse	any
-    # remainder	arguments that this	parser does	not	understand
     args, sys.argv[1:] = parser.parse_known_args(sys.argv[1:])
+    # run
     aetest.main(num1=args.num1, num2=args.num2)

@@ -41,5 +41,7 @@ class UnitTest(aetest.Testcase):
 
 
 if __name__ == '__main__':
+    # load testbase file
     testbed = loader.load(os.path.dirname(__file__) + '/docker-env.yaml')
+    # run
     aetest.main(testbed=testbed)
