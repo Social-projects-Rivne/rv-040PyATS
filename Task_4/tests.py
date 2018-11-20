@@ -1,4 +1,6 @@
-"""test with looping"""
+"""test with looping
+comand for run - python <path to>/tests.py --letter <a or b or c>
+"""
 
 
 import argparse
