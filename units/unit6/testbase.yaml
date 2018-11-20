@@ -1,0 +1,6 @@
+testbed:
+  name: "plugin homework"
+  class: save_homework.CopyReport
+  custom:
+    directory: './custom'
+    report-directory: './data'

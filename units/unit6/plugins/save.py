@@ -16,5 +16,5 @@ class CopyReport(BasePlugin):
         self._dest = 'custom-data'
 
     def post_job(self, job):
-        logger.info('The	directory	to	copy:	%s;	destination:	%s', self._source, self._dest)
-        shutil.copytree(self._source, '{job.runtime.directory}/{self._dest}'.format(job))
+        logger.info('The directory to copy: %s;	destination: %s', self._source, self._dest)
+        shutil.copytree(self._source, '{}/{}'.format(job.runtime, self._dest))

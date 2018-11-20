@@ -16,8 +16,8 @@ def main(runtime):
     parser.add_argument('-num2', type=float, required=True)
     args, sys.argv[1:] = parser.parse_known_args(sys.argv[1:])
 
-    # using Task class to create a two tasks
-    # (max runtime = 60*5 seconds = 5 minutes)
+    # using Task class to create a 4 tasks
+    # (max runtime = 60*5 seconds = 1 minutes)
     task_multiplication = Task(testscript=os.path.dirname(__file__) + '/multiplication.py',
                                runtime=runtime,
                                taskid='multiplication',
@@ -43,7 +43,7 @@ def main(runtime):
     task_division.start()
     task_addition.start()
     task_subtraction.start()
-    # poll for tasks to finish (max of 5 minutes)
+    # poll for tasks to finish (max of 1 minutes)
     counter = timedelta(minutes=1)
     while counter:
         # check if processes are alive, if so, continue to wait

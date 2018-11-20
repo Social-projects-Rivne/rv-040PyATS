@@ -3,7 +3,7 @@ import os
 from pyats import aetest
 
 
-class Smoke(aetest.Testcase):
+class UnitTest(aetest.Testcase):
 
     @aetest.setup
     def create(self, directory):
@@ -12,14 +12,14 @@ class Smoke(aetest.Testcase):
 
     @aetest.test
     def foo(self, directory):
-        with open('{directory}/foo.txt'.format(directory), 'w') as file:
+        with open('{}/foo.txt'.format(directory), 'w') as file:
             file.write('Some important info: foo')
 
     @aetest.test
     def bar(self, directory):
-        with open('{directory}/bar.txt'.format(directory), 'w') as file:
+        with open('{}/bar.txt'.format(directory), 'w') as file:
             file.write('Some important info: bar')
 
 
 if __name__ == '__main__':
-    aetest.main()
+    aetest.main(directory='./txt')
