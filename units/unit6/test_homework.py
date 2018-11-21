@@ -9,24 +9,23 @@ from pyats.topology import loader
 class UnitTest(aetest.Testcase):
     """Main class for testing"""
 
-    # @aetest.setup
-    # def create(self, directory):
-    #     if not os.path.exists(directory):
-    #         os.makedirs(directory)
+    @aetest.setup
+    def create(self, testbed):
+        self._directory = testbed.custom.get('directory')
+        if not os.path.exists(self._directory):
+            os.makedirs(self._directory)
 
     @aetest.test
-    def foo1(self):
+    def foo(self):
         """Print 1"""
-        # with open('{}/foo.txt'.format(directory), 'w') as file:
-        #     file.write('Some important info: foo')
-        print('1')
+        with open('{}/foo.txt'.format(self._directory), 'w') as file:
+            file.write('Some important info: foo')
 
     @aetest.test
-    def bar2(self):
+    def bar(self):
         """Print 2"""
-        # with open('{}/bar.txt'.format(directory), 'w') as file:
-        #     file.write('Some important info: bar')
-        print('2')
+        with open('{}/bar.txt'.format(self._directory), 'w') as file:
+            file.write('Some important info: bar')
 
 
 if __name__ == '__main__':

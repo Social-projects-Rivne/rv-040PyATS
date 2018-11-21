@@ -1,8 +1,5 @@
 #if error with yaml file
-export PYTHONPATH=${PWD}/plugins:${PYTHONPATH}
+export PYTHONPATH=${PWD}
 
 #run
-easypy -configuration <path>/plugin_homework.yaml <path>/job_homework.py
-
-#run by testbed
-easypy <path>/job_homework.py -testbed_file <path>/testbase.yaml
+easypy <path>/job_homework.py -testbed_file <path>/testbase.yaml -configuration <path>/plugin_homework.yaml -no_archive

@@ -1,8 +1,7 @@
 # plugins.yaml
 plugins:
   CopyReport:
-    directory: './custom'
-    report_directory: './data'
+    directory: './txt'
     enabled: True
     module: save_homework
     order: 1.0

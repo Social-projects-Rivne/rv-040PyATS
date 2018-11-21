@@ -14,12 +14,12 @@ class InitTest(aetest.Testcase):
     @aetest.test
     def test_1(self, word):
         """Print word"""
-        print(f'Test #1: {word}')
+        print('Test #1: {}'.format(word))
 
     @aetest.test
     def test_2(self, word):
         """Print word"""
-        print(f'Test #2: {word}')
+        print('Test #2: {}'.format(word))
 
     @aetest.cleanup
     def cleanup(self):
