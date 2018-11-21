@@ -1,0 +1,5 @@
+testbed:
+  name: "plugin homework"
+  custom:
+    directory: ./custom
+    report-directory: ./data
