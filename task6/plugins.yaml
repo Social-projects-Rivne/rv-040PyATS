@@ -1,0 +1,6 @@
+plugins:
+  CopyReport:
+    directory: './custom'
+    enabled: True
+    module: save
+    order: 1.0
