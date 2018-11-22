@@ -1,4 +1,4 @@
-"""test_homework.py for testing"""
+"""test.py for testing"""
 
 import os
 from pyats import aetest
@@ -17,13 +17,13 @@ class UnitTest(aetest.Testcase):
 
     @aetest.test
     def foo(self):
-        """Print 1"""
+        """Write some info into txt file"""
         with open('{}/foo.txt'.format(self._directory), 'w') as file:
             file.write('Some important info: foo')
 
     @aetest.test
     def bar(self):
-        """Print 2"""
+        """Write some info into txt file"""
         with open('{}/bar.txt'.format(self._directory), 'w') as file:
             file.write('Some important info: bar')
 

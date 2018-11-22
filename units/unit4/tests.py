@@ -18,19 +18,21 @@ def get_value():
 class UnitTest(aetest.Testcase):
     """Main class for testing"""
 
-    # @aetest.setup
-    # def setup(self, letter='a'):
-    #     """Setup"""
-    #     self.letter = letter
+    @aetest.setup
+    def setup(self):
+        """Setup"""
+        self.counter = 0
 
     @aetest.test.loop(number=get_value)
     def check(self, number):
         """Return one number from mapping by loop"""
+        self.counter += 1
         print('number: {}'.format(number))
 
-    # @aetest.test
-    # def check(self, number):
-    #     print(f'number: {number}')
+    @aetest.cleanup
+    def cleanup(self):
+        """Cleanup"""
+        assert len(get_value()) == self.counter
 
 
 if __name__ == '__main__':

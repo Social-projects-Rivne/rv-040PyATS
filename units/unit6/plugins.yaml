@@ -3,5 +3,5 @@ plugins:
   CopyReport:
     directory: './txt'
     enabled: True
-    module: save_homework
+    module: save
     order: 1.0

@@ -24,6 +24,8 @@ class UnitTest(aetest.Testcase):
             futils.copyfile(source='file:/home/grant/python/123.py',
                             destination='sftp://server_alias:2222/upload/123.py',
                             timeout_seconds=120)
+            # futils.checkfile(target='sftp://server_alias:2222/upload/123.py')
+            assert futils.is_remote('sftp://server_alias:2222/upload/123.py')
 
     @aetest.test
     def test_copy_from_vm(self, testbed):
@@ -32,6 +34,7 @@ class UnitTest(aetest.Testcase):
             futils.copyfile(source='sftp://server_alias:2222/upload/123.py',
                             destination='file:/home/grant/123.py',
                             timeout_seconds=120)
+            assert futils.is_local('file:/home/grant/123.py')
 
     @aetest.cleanup
     def disconnect(self):

@@ -2,4 +2,4 @@
 export PYTHONPATH=${PWD}
 
 #run
-easypy <path>/job_homework.py -testbed_file <path>/testbase.yaml -configuration <path>/plugin_homework.yaml -no_archive
+easypy <path>/job.py -testbed_file <path>/testbase.yaml -configuration <path>/plugin.yaml

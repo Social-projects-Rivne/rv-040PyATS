@@ -1,4 +1,4 @@
-"""save_homework.py for make direction reports"""
+"""save.py for make direction reports"""
 
 import logging
 import shutil
@@ -13,14 +13,13 @@ class CopyReport(BasePlugin):
     """Main class for reporting"""
 
     def __init__(self, directory, *args, **kwargs):
-        """Initialize directories from yaml file"""
+        """Initialize directories from yaml file. Args from plugins configuration file"""
         super().__init__(*args, **kwargs)
         self._source = directory
 
     def post_job(self, job):
-        """Copy runinfo to report directory and print some info"""
+        """Copy custom test files to archive and print some info"""
+        directory = job.runtime.testbed.custom.get('directory')
         report_directory = job.runtime.testbed.custom.get('report_directory')
-        logger.info('The directory copy to destination: %s', report_directory)
-        # shutil.move(job.runtime.directory, report_directory)
-        # shutil.make_archive()
-        # shutil.copy(job.runtime.archive, report_directory, follow_symlinks=False)
+        logger.info('The directory to copy: %s;	destination: %s', directory, report_directory)
+        shutil.copytree(directory, '{}/{}'.format(job.runtime.directory, report_directory))
