@@ -1,3 +1,7 @@
+"""
+easypy tasktwo/jobs.py -num1 <num1> -num2 <num2>
+
+"""
 import argparse
 import time
 from datetime import timedelta
@@ -32,13 +36,13 @@ def main(runtime):
 
     task_mult = Task(testscript = (os.path.join(dir_name + '/jobs/multiplication.py')),
                     runtime=runtime,
-                    taskid='sub',
+                    taskid='mult',
                     num1=args.num1,
                     num2=args.num2)
 
     task_div = Task(testscript =(os.path.join(dir_name + '/jobs/division.py')),
                     runtime=runtime,
-                    taskid='sub',
+                    taskid='div',
                     num1=args.num1,
                     num2=args.num2)
 

@@ -8,8 +8,8 @@ from calculation import add, divide
 
 
 parameters = {
-    'num1' : 3,
-    'num2' : 0
+    'num1': 3,
+    'num2': 0
 
 }
 
@@ -28,7 +28,6 @@ class SmokeTest(aetest.Testcase):
         """Test add"""
 
         result = add(num1, num2)
-        print(result)
 
         #if less than 0 - skip
         if result < 0:
@@ -46,6 +45,7 @@ class SmokeTest(aetest.Testcase):
             if result < 0:
                 self.skipped("Result less than 0")
             assert result == num1 / num2
+
         #if num2 = 0 -> passx
         except ZeroDivisionError:
             self.passx("Division by 0")
@@ -68,9 +68,8 @@ if __name__ == "__main__":
 
     # and pass all arguments to aetest.main() as kwargs
 
-    if args.num1 and args.num2:
+    if args.num1 is not None and args.num2 is not None:
         aetest.main(num1=args.num1, num2=args.num2)
-    elif args.num1 == 0 or args.num2 ==0:
-        aetest.main(num1=args.num1, num2=args.num2)
+
     else:
         aetest.main()
