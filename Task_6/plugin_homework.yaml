@@ -1,0 +1,7 @@
+# plugins.yaml
+plugins:
+  CopyReport:
+    directory: './txt'
+    enabled: True
+    module: save_homework
+    order: 1.0
