@@ -28,8 +28,8 @@ class UnitTest(aetest.Testcase):
             file.write('Some important info: bar')
 
 
-if __name__ == '__main__':
-    # load testbase file
-    testbed = loader.load(os.path.dirname(__file__) + '/testbase.yaml')
-    # run
-    aetest.main(testbed=testbed)
+# if __name__ == '__main__':
+#     # load testbase file
+#     testbed = loader.load(os.path.dirname(__file__) + '/testbase.yaml')
+#     # run
+#     aetest.main(testbed=testbed)

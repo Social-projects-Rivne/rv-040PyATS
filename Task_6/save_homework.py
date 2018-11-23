@@ -19,8 +19,7 @@ class CopyReport(BasePlugin):
 
     def post_job(self, job):
         """Copy runinfo to report directory and print some info"""
+        directory = job.runtime.testbed.custom.get('directory')
         report_directory = job.runtime.testbed.custom.get('report_directory')
-        logger.info('The directory copy to destination: %s', report_directory)
-        # shutil.move(job.runtime.directory, report_directory)
-        # shutil.make_archive()
-        # shutil.copy(job.runtime.archive, report_directory, follow_symlinks=False)
+        logger.info('The directory copy to: %s;      destination: %s', directory, report_directory)
+        shutil.copytree(directory, '{}/{}'.format(job.runtime.directory, report_directory))

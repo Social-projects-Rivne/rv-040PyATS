@@ -14,7 +14,7 @@ class CalculationTestCase(aetest.Testcase):
 
 
     @test
-    def test_sum(self, num1=3, num2=0):
+    def test_sum(self, num1, num2):
         """Testing of adding num1 and num2"""
         if add(num1, num2) < 0:
             self.skipped('calculated value < 0')
@@ -23,7 +23,7 @@ class CalculationTestCase(aetest.Testcase):
 
 
     @test
-    def test_divide(self, num1=3, num2=0):
+    def test_divide(self, num1, num2):
         """Testing of dividing num1 by num2"""
         try:
             division_value = num1 / num2
@@ -36,14 +36,12 @@ class CalculationTestCase(aetest.Testcase):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="standalone parser")
-    parser.add_argument('-num1',  type=int, required=False)
-    parser.add_argument('-num2',  type=int, required=False)
+    parser.add_argument('-num1',  type=int, default=3, required=False)
+    parser.add_argument('-num2',  type=int, default=0, required=False)
     # do the parsing
     # always use parse_known_args, as aetest needs to parse any
     # remainder arguments that this parser does not understand
     args, sys.argv[1:] = parser.parse_known_args(sys.argv[1:])
     # and pass all arguments to aetest.main() as kwargs
-    if (args.num1 is not None) and (args.num2 is not None):
-        aetest.main(num1=args.num1, num2=args.num2)
-    else:
-        aetest.main()
+    aetest.main(num1=args.num1, num2=args.num2)
+

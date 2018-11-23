@@ -1,6 +1,7 @@
 """job.py"""
 
 import argparse
+import os
 import sys
 import time
 
@@ -13,27 +14,28 @@ parser.add_argument('-num1',  type=float, required=True)
 parser.add_argument('-num2',  type=float, required=True)
 args, sys.argv[1:] = parser.parse_known_args(sys.argv[1:])
 
+project_dir = os.path.dirname(__file__)
 
 def main(runtime):
-    division = Task(testscript='division.py',
+    division = Task(testscript=os.path.join(project_dir, 'division.py'),
                     runtime = runtime,
                     taskid = "division",
                     num1 = args.num1,
                     num2 = args.num2)
 
-    addition = Task(testscript='addition.py',
+    addition = Task(testscript=os.path.join(project_dir, 'addition.py'),
                     runtime = runtime,
                     taskid = "addition",
                     num1 = args.num1,
                     num2 = args.num2)
 
-    subtraction = Task(testscript='subtraction.py',
+    subtraction = Task(testscript=os.path.join(project_dir, 'subtraction.py'),
                        runtime = runtime,
                        taskid = "subtraction",
                        num1 = args.num1,
                        num2 = args.num2)
 
-    multiplication = Task(testscript='multiplication.py',
+    multiplication = Task(testscript=os.path.join(project_dir, 'multiplication.py'),
                           runtime = runtime,
                           taskid = "multiplication",
                           num1 = args.num1,

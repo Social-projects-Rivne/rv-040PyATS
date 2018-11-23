@@ -18,6 +18,7 @@ class UnitTest(aetest.Testcase):
             futils.copyfile(source='file:/home/shepsel/Downloads/staff/pyats-06.pdf',
                             destination='sftp://server_alias:2222/upload/pyats-06.pdf',
                             timeout_seconds=60)
+            assert futils.checkfile('sftp://server_alias:2222/upload/pyats-06.pdf') == None
 
     @aetest.test
     def test_copy_from_vm(self, testbed):
@@ -26,8 +27,9 @@ class UnitTest(aetest.Testcase):
             futils.copyfile(source='sftp://server_alias:2222/upload/pyats-06.pdf',
                             destination='file:/home/shepsel/Downloads/staff/fromserver/pyats-06.pdf',
                             timeout_seconds=60)
+            assert os.path.isfile('/home/shepsel/Downloads/staff/fromserver/pyats-06.pdf')
 
 
-if __name__ == '__main__':
-    testbed = loader.load(os.path.dirname(__file__) + '/docker-env.yaml')
-    aetest.main(testbed=testbed)
+# if __name__ == '__main__':
+#     testbed = loader.load(os.path.dirname(__file__) + '/docker-env.yaml')
+#     aetest.main(testbed=testbed)

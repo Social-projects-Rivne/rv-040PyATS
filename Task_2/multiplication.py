@@ -10,7 +10,7 @@ class multiplicationTest(aetest.Testcase):
     @test
     def multiplication(self, num1, num2):
         """multiplication math operation"""
-        multiplication_result = num1 - num2
+        multiplication_result = num1 * num2
         assert multiplication_result >= 0, "multiplication_result should be >= 0"
 
 
