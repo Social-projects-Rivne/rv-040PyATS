@@ -13,8 +13,8 @@ from pyats.easypy.tasks import Task
 dir_name = os.path.dirname(__file__)
 
 parser = argparse.ArgumentParser(description="my custom parser")
-parser.add_argument('-num1', type = int, required=True)
-parser.add_argument('-num2', type = int, required=True)
+parser.add_argument('-num1', type = float, required=True)
+parser.add_argument('-num2', type = float, required=True)
 
 def main(runtime):
 
