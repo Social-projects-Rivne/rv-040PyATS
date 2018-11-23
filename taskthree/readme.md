@@ -1,8 +1,10 @@
 #up vagrant VM
-    from: "Vagrantfile
+    from: "Vagrantfile"
 
 #util to copy files
-    vagrant plugin install vagrant-scp
+
+    pip install paramiko
+    pip install scp
     
 # run test:
     easypy conn_job.py -testbed_file testbed.yaml

@@ -1,5 +1,5 @@
 """
-to run python test.py --letter <letter>
+to run python test.py --letter <a, b or c>
 
 """
 import argparse
