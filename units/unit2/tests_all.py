@@ -8,6 +8,8 @@ from datetime import timedelta
 
 from pyats.easypy import Task
 
+PROJECT_DIR = os.path.dirname(__file__)
+
 
 def main(runtime):
     """Main function for running test in threads"""
@@ -20,7 +22,7 @@ def main(runtime):
 
     # using Task class to create a 4 tasks
     # (max runtime = 60*5 seconds = 1 minutes)
-    task_multiplication = Task(testscript=os.path.dirname(__file__) + '/multiplication.py',
+    task_multiplication = Task(testscript=os.path.join(PROJECT_DIR, 'multiplication.py'),
                                runtime=runtime,
                                taskid='multiplication',
                                num1=args.num1,
