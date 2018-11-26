@@ -15,7 +15,7 @@ devices:
 testbed:
   servers:
     server_alias:
-      server: dron.cpp
+      server: softserve.academy
       address: 192.169.0.104
       username: vagrant
       password: vagrant

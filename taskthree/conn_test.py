@@ -10,6 +10,7 @@ from pyats import aetest
 from pyats.topology import loader
 from pyats.aetest import test, setup, cleanup
 from pyats.utils.fileutils import FileUtils
+import os.path
 
 testbed = loader.load('testbed.yaml')
 
@@ -20,7 +21,7 @@ class Smoke(aetest.Testcase):
     def connect(self):
         self.vm = testbed.devices['DESKTOP-K0K4BRM']
         self.vm.connect()
-        self.vm.connect(start="ssh vagrant@192.169.0.104")
+        self.vm.connect(start="ssh vagrant@softserve.academy")
 
     @test
     def test_one(self):
@@ -33,10 +34,12 @@ class Smoke(aetest.Testcase):
 
         with FileUtils(testbed=testbed) as futils:
             futils.copyfile(
-                source='scp://192.169.0.104/home/vagrant/test/Vagrantfile',
+                source='scp://softserve.academy/home/vagrant/test/Vagrantfile',
                 destination='file:///home/class/selen/rv-040PyATS/taskthree/copy/',
                 timeout_seconds=120
             )
+        assert os.path.isfile('/home/class/selen/rv-040PyATS/taskthree/copy/Vagrantfile')
+
 
     @test
     def test_copy_files_to_ssh(self):
@@ -45,9 +48,10 @@ class Smoke(aetest.Testcase):
         with FileUtils(testbed=testbed) as futils:
             futils.copyfile(
                 source='file:///home/class/selen/rv-040PyATS/taskthree/copy/Vagrantfile',
-                destination='scp://192.169.0.104/home/vagrant/test/',
+                destination='scp://softserve.academy/home/vagrant/test/',
                 timeout_seconds=120
             )
+        assert futils.checkfile('sftp://softserve.academy/home/vagrant/test/Vagrantfile') is None
 
     @cleanup
     def disconnect(self):
