@@ -9,4 +9,4 @@ PROJECT_DIR = os.path.dirname(__file__)
 
 def main():
     """Main method for running by easypy"""
-    run(testscript=os.path.dirname(__file__) + '/tb.py')
+    run(testscript=os.path.join(PROJECT_DIR, 'tb.py'))

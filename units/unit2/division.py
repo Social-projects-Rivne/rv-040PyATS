@@ -16,7 +16,3 @@ class UnitTest(aetest.Testcase):
             self.passed("Test pass")
         except ZeroDivisionError:
             self.passx("Division by 0")
-
-
-if __name__ == '__main__':
-    aetest.main()
