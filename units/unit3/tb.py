@@ -6,6 +6,7 @@ from pyats import aetest
 from pyats.topology import loader
 from pyats.utils.fileutils.plugins.linux.fileutils import FileUtils
 
+PROJECT_DIR = os.path.dirname(__file__)
 
 
 class UnitTest(aetest.Testcase):
@@ -25,7 +26,7 @@ class UnitTest(aetest.Testcase):
             futils.copyfile(source='file:/home/class/ohrytsiuk/pyats/example.py',
                             destination='sftp://server_alias:2222/upload/123.py',
                             timeout_seconds=120)
-            # assert futils.checkfile('sftp://server_alias:2222/upload/123.py') == None
+            assert futils.checkfile('sftp://server_alias:2222/upload/123.py') == None
 
     @aetest.test
     def test_copy_from_vm(self, testbed):
@@ -34,7 +35,7 @@ class UnitTest(aetest.Testcase):
             futils.copyfile(source='sftp://server_alias:2222/upload/123.py',
                             destination='file:/home/class/ohrytsiuk/pyats/123.py',
                             timeout_seconds=120)
-            # assert os.path.isfile('/home/class/ohrytsiuk/pyats/123.py123')
+            assert os.path.isfile('/home/class/ohrytsiuk/pyats/123.py123')
 
     @aetest.cleanup
     def disconnect(self):

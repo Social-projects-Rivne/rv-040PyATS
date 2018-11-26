@@ -27,17 +27,17 @@ def main(runtime):
                                taskid='multiplication',
                                num1=args.num1,
                                num2=args.num2)
-    task_division = Task(testscript=os.path.dirname(__file__) + '/division.py',
+    task_division = Task(testscript=os.path.join(PROJECT_DIR, 'division.py'),
                          runtime=runtime,
                          taskid='division',
                          num1=args.num1,
                          num2=args.num2)
-    task_addition = Task(testscript=os.path.dirname(__file__) + '/addition.py',
+    task_addition = Task(testscript=os.path.join(PROJECT_DIR, 'addition.py'),
                          runtime=runtime,
                          taskid='addition',
                          num1=args.num1,
                          num2=args.num2)
-    task_subtraction = Task(testscript=os.path.dirname(__file__) + '/subtraction.py',
+    task_subtraction = Task(testscript=os.path.join(PROJECT_DIR, 'subtraction.py'),
                             runtime=runtime,
                             taskid='subtraction',
                             num1=args.num1,

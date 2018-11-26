@@ -1,6 +1,9 @@
 """job.py for easypy run"""
 
+import os
 from pyats import easypy
+
+PROJECT_DIR = os.path.dirname(__file__)
 
 
 def main():

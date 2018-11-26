@@ -6,6 +6,8 @@ import sys
 
 from pyats.easypy.tasks import run
 
+PROJECT_DIR = os.path.dirname(__file__)
+
 
 def main():
     """Main function for running by easypy"""
