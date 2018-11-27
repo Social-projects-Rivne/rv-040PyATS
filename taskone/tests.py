@@ -1,11 +1,14 @@
-
 """to run: python taskone/tests.py -num1 <arg> -num2 <arg>"""
+
 import argparse
 import sys
+
 from pyats import aetest
+from pyats.utils.import_utils import import_from_name
+from pyats.aetest import test, setup, cleanup
 
-from calculation import add, divide
-
+add = import_from_name('calculation.add')
+divide = import_from_name('calculation.divide')
 
 parameters = {
     'num1': 3,
@@ -16,13 +19,11 @@ parameters = {
 
 class SmokeTest(aetest.Testcase):
 
-
-
-    @aetest.setup
+    @setup
     def setup(self):
         pass
 
-    @aetest.test
+    @test
     def test_add(self, num1, num2):
 
         """Test add"""
@@ -33,7 +34,7 @@ class SmokeTest(aetest.Testcase):
         else:
             assert result == num1 + num2
 
-    @aetest.test
+    @test
     def test_divide(self, num1, num2):
 
         """Test divide"""
@@ -43,11 +44,12 @@ class SmokeTest(aetest.Testcase):
                 self.skipped("Result less than 0")
             assert result == num1 / num2
 
-        #if num2 = 0 -> passx
+        # if num2 = 0 -> passx
+
         except ZeroDivisionError:
             self.passx("Division by 0")
 
-    @aetest.cleanup
+    @cleanup
     def cleanup(self):
         """Cleanup"""
         pass
@@ -64,7 +66,6 @@ if __name__ == "__main__":
     args, sys.argv[1:] = parser.parse_known_args(sys.argv[1:])
 
     # and pass all arguments to aetest.main() as kwargs
-
     if args.num1 is not None and args.num2 is not None:
         aetest.main(num1=args.num1, num2=args.num2)
 

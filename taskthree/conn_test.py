@@ -9,17 +9,14 @@ import os.path
 
 from pyats import aetest
 from pyats.aetest import test, setup, cleanup
-from pyats.log.utils import banner
 from pyats.utils.fileutils import FileUtils
-
-
-
 
 
 class Smoke(aetest.Testcase):
 
     @setup
     def connect(self, testbed):
+
         self.vm = testbed.devices['DESKTOP-K0K4BRM']
         self.vm.connect()
         self.vm.connect(start="ssh vagrant@softserve.academy")
@@ -40,7 +37,6 @@ class Smoke(aetest.Testcase):
             )
         assert os.path.isfile('/home/class/selen/rv-040PyATS/taskthree/copy/Vagrantfile')
 
-
     @test
     def test_copy_files_to_ssh(self, testbed):
 
@@ -51,7 +47,7 @@ class Smoke(aetest.Testcase):
                 destination='scp://softserve.academy/home/vagrant/test/',
                 timeout_seconds=120
             )
-        assert futils.checkfile('sftp://softserve.academy/home/vagrant/test/Vagrantfile') is None
+        assert futils.checkfile('sftp://softserve.academy/home/vagrant/test/Vagrantfile') == ''
 
     @cleanup
     def disconnect(self):
