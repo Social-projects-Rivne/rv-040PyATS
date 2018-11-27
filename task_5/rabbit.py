@@ -1,5 +1,7 @@
 """rabbit.py"""
 
+import argparse
+import sys
 from pyats import aetest
 
 

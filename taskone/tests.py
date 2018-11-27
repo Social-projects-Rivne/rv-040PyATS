@@ -26,10 +26,8 @@ class SmokeTest(aetest.Testcase):
     def test_add(self, num1, num2):
 
         """Test add"""
-
         result = add(num1, num2)
 
-        #if less than 0 - skip
         if result < 0:
             self.skipped("Result < 0")
         else:
@@ -39,7 +37,6 @@ class SmokeTest(aetest.Testcase):
     def test_divide(self, num1, num2):
 
         """Test divide"""
-
         try:
             result = divide(num1, num2)
             if result < 0:

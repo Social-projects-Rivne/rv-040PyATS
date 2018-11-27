@@ -13,8 +13,8 @@ from pyats.easypy.tasks import Task
 dir_name = os.path.dirname(__file__)
 
 parser = argparse.ArgumentParser(description="my custom parser")
-parser.add_argument('-num1', type = float, required=True)
-parser.add_argument('-num2', type = float, required=True)
+parser.add_argument('-num1', type=float, required=True)
+parser.add_argument('-num2', type=float, required=True)
 
 def main(runtime):
 
@@ -57,12 +57,11 @@ def main(runtime):
     counter = timedelta(minutes=5)
 
     while counter:
+
         # check if processes are alive, if so, continue to wait
-        if task_add.is_alive() or task_sub.is_alive() \
-            or task_div.is_alive() or task_mult.is_alive():
+        if task_add.is_alive() or task_sub.is_alive() or task_div.is_alive() or task_mult.is_alive():
             time.sleep(1)
             counter -= timedelta(seconds=1)
-
         else:
             #all is good
             break
@@ -71,10 +70,13 @@ def main(runtime):
         # exceeded runtime
         task_add.terminate()
         task_add.join()
+
         task_sub.terminate()
         task_sub.join()
+
         task_mult.terminate()
         task_mult.join()
+
         task_div.terminate()
         task_div.join()
 
