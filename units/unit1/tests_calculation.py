@@ -4,7 +4,10 @@ import argparse
 import sys
 from pyats import aetest
 
-import calculation
+from pyats.utils.import_utils import import_from_name
+
+add = import_from_name("calculation.add")
+divide = import_from_name("calculation.divide")
 
 
 class UnitTest(aetest.Testcase):
@@ -18,7 +21,7 @@ class UnitTest(aetest.Testcase):
     @aetest.test
     def test_add(self, num1, num2):
         """Test calculation function add"""
-        result = calculation.add(num1, num2)
+        result = add(num1, num2)
         if result < 0:
             self.skipped("Result less than 0")
         assert result == sum((num1, num2))
@@ -27,7 +30,7 @@ class UnitTest(aetest.Testcase):
     def test_divide(self, num1, num2):
         """Test calculation function divine"""
         try:
-            result = calculation.divide(num1, num2)
+            result = divide(num1, num2)
             if result < 0:
                 self.skipped("Result less than 0")
             assert result == num1 / num2

@@ -14,3 +14,8 @@ testbed:
       address: 127.0.0.1
       username: foo
       password: pass
+  custom:
+    local_source: 'file:/home/class/ohrytsiuk/pyats/example.py'
+    local_destination: 'file:/home/class/ohrytsiuk/pyats/123.py'
+    remote_source: 'sftp://server_alias:2222/upload/123.py'
+    remote_destination: 'sftp://server_alias:2222/upload/123.py'

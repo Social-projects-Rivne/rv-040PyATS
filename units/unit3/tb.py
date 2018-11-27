@@ -17,25 +17,28 @@ class UnitTest(aetest.Testcase):
         """Set up"""
         # self.vm = testbed.devices['vm']
         # self.vm.connect(via='sftp', alias="second")
-        pass
+        self.local_source = testbed.custom.get('local_source')
+        self.local_destination = testbed.custom.get('local_destination')
+        self.remote_source = testbed.custom.get('remote_source')
+        self.remote_destination = testbed.custom.get('remote_destination')
 
     @aetest.test
     def test_copy_from_pc(self, testbed):
         """Copy file from localhost to linux virtual machine using sftp"""
         with FileUtils(testbed=testbed) as futils:
-            futils.copyfile(source='file:/home/class/ohrytsiuk/pyats/example.py',
-                            destination='sftp://server_alias:2222/upload/123.py',
+            futils.copyfile(source=self.local_source,
+                            destination=self.remote_destination,
                             timeout_seconds=120)
-            assert futils.checkfile('sftp://server_alias:2222/upload/123.py') == None
+            assert futils.checkfile(self.remote_destination) is None
 
     @aetest.test
     def test_copy_from_vm(self, testbed):
         """Copy file from linux virtual machine to localhost using sftp"""
         with FileUtils(testbed=testbed) as futils:
-            futils.copyfile(source='sftp://server_alias:2222/upload/123.py',
-                            destination='file:/home/class/ohrytsiuk/pyats/123.py',
+            futils.copyfile(source=self.remote_source,
+                            destination=self.local_destination,
                             timeout_seconds=120)
-            assert os.path.isfile('/home/class/ohrytsiuk/pyats/123.py123')
+            assert os.path.isfile(self.local_destination[5:])
 
     @aetest.cleanup
     def disconnect(self):
@@ -46,6 +49,6 @@ class UnitTest(aetest.Testcase):
 
 if __name__ == '__main__':
     # load testbase file
-    testbed = loader.load(os.path.dirname(__file__) + '/docker-env.yaml')
+    testbed = loader.load(os.path.join(PROJECT_DIR, 'docker-env.yaml'))
     # run
     aetest.main(testbed=testbed)

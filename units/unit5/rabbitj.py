@@ -16,4 +16,4 @@ def main():
     parser.add_argument('-word', type=str, default='alongggggggggggggword', required=False)
     args, sys.argv[1:] = parser.parse_known_args(sys.argv[1:])
     # run
-    run(testscript=os.path.dirname(__file__) + '/rabbit.py', word=args.word)
+    run(testscript=os.path.join(PROJECT_DIR, 'rabbit.py'), word=args.word)

@@ -5,6 +5,8 @@ from pyats import aetest
 
 from pyats.topology import loader
 
+PROJECT_DIR = os.path.dirname(__file__)
+
 
 class UnitTest(aetest.Testcase):
     """Main class for testing"""
@@ -30,6 +32,6 @@ class UnitTest(aetest.Testcase):
 
 if __name__ == '__main__':
     # load testbase file
-    testbed = loader.load(os.path.dirname(__file__) + '/testbase.yaml')
+    testbed = loader.load(os.path.join(PROJECT_DIR, 'testbase.yaml'))
     # run
     aetest.main(testbed=testbed)

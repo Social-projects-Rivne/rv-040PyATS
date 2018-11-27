@@ -9,7 +9,7 @@ class InitTest(aetest.Testcase):
     @aetest.setup
     def setup(self):
         """Setup before tests"""
-        print("A setup of smoke test")
+        print("A setup of unit test")
 
     @aetest.test
     def test_1(self, word):
@@ -24,7 +24,7 @@ class InitTest(aetest.Testcase):
     @aetest.cleanup
     def cleanup(self):
         """CleanUp after tests"""
-        print("A cleanup of smoke test")
+        print("A cleanup of unit test")
 
 
 # if __name__ == '__main__':
