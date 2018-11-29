@@ -19,3 +19,8 @@ testbed:
       address: 192.169.0.104
       username: vagrant
       password: vagrant
+  custom:
+    local_source: 'file:///home/class/selen/rv-040PyATS/taskthree/copy/Vagrantfile'
+    local_destination: 'file:///home/class/selen/rv-040PyATS/taskthree/copy/'
+    remote_source: 'scp://softserve.academy/home/vagrant/test/Vagrantfile'
+    remote_destination: 'scp://softserve.academy/home/vagrant/test/'

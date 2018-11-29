@@ -17,37 +17,40 @@ class Smoke(aetest.Testcase):
     @setup
     def connect(self, testbed):
 
+        """Connect to remote machine"""
         self.vm = testbed.devices['DESKTOP-K0K4BRM']
         self.vm.connect()
-        self.vm.connect(start="ssh vagrant@softserve.academy")
 
-    @test
-    def test_ping(self):
-        self.vm.ping('192.169.0.104')
+        self.local_source = testbed.custom.get('local_source')
+        self.local_destination = testbed.custom.get('local_destination')
+        self.remote_source = testbed.custom.get('remote_source')
+        self.remote_destination = testbed.custom.get('remote_destination')
 
     @test
     def test_copy_files_from_ssh(self, testbed):
 
-        # copy file to local machile
+        # copy file to local machine
         with FileUtils(testbed=testbed) as futils:
             futils.copyfile(
-                source='scp://softserve.academy/home/vagrant/test/Vagrantfile',
-                destination='file:///home/class/selen/rv-040PyATS/taskthree/copy/',
+                source=self.remote_source,
+                destination=self.local_destination,
                 timeout_seconds=120
             )
-        assert os.path.isfile('/home/class/selen/rv-040PyATS/taskthree/copy/Vagrantfile')
+
+        assert os.path.isfile(self.local_destination[7:] + 'Vagrantfile')
 
     @test
     def test_copy_files_to_ssh(self, testbed):
 
-        #copy file to ssh vm
+        # copy file to ssh vm
         with FileUtils(testbed=testbed) as futils:
             futils.copyfile(
-                source='file:///home/class/selen/rv-040PyATS/taskthree/copy/Vagrantfile',
-                destination='scp://softserve.academy/home/vagrant/test/',
+                source=self.local_source,
+                destination=self.remote_destination,
                 timeout_seconds=120
             )
-        assert futils.checkfile('sftp://softserve.academy/home/vagrant/test/Vagrantfile') == ''
+
+        assert futils.checkfile('sftp' + self.remote_destination[3:]) is None
 
     @cleanup
     def disconnect(self):

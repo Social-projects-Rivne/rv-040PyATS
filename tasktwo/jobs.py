@@ -16,31 +16,32 @@ parser = argparse.ArgumentParser(description="my custom parser")
 parser.add_argument('-num1', type=float, required=True)
 parser.add_argument('-num2', type=float, required=True)
 
+
 def main(runtime):
 
     args, sys.argv[1:] = parser.parse_known_args(sys.argv[1:])
 
-    #using Task class to create a two tasks
+    # using Task class to create a two tasks
     # max runtime = 60*5 sec = 5 min
-    task_add = Task(testscript = (os.path.join(dir_name + '/jobs/addition.py')),
+    task_add = Task(testscript=(os.path.join(dir_name + '/jobs/addition.py')),
                     runtime=runtime,
                     taskid='add',
                     num1=args.num1,
                     num2=args.num2)
 
-    task_sub = Task(testscript = (os.path.join(dir_name + '/jobs/substraction.py')),
+    task_sub = Task(testscript=(os.path.join(dir_name + '/jobs/substraction.py')),
                     runtime=runtime,
                     taskid='sub',
                     num1=args.num1,
                     num2=args.num2)
 
-    task_mult = Task(testscript = (os.path.join(dir_name + '/jobs/multiplication.py')),
+    task_mult = Task(testscript=(os.path.join(dir_name + '/jobs/multiplication.py')),
                     runtime=runtime,
                     taskid='mult',
                     num1=args.num1,
                     num2=args.num2)
 
-    task_div = Task(testscript =(os.path.join(dir_name + '/jobs/division.py')),
+    task_div = Task(testscript=(os.path.join(dir_name + '/jobs/division.py')),
                     runtime=runtime,
                     taskid='div',
                     num1=args.num1,
