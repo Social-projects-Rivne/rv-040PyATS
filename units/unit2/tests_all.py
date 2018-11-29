@@ -1,4 +1,4 @@
-"""For running tasks in 4 threads"""
+"""For running test tasks in 4 threads"""
 
 import argparse
 import os

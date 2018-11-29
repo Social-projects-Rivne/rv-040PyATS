@@ -5,8 +5,8 @@ import shutil
 
 from pyats.easypy.plugins.bases import BasePlugin
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel(logging.INFO)
 
 
 class CopyReport(BasePlugin):
@@ -21,5 +21,5 @@ class CopyReport(BasePlugin):
         """Copy custom test files to archive and print some info"""
         directory = job.runtime.testbed.custom.get('directory')
         report_directory = job.runtime.testbed.custom.get('report_directory')
-        logger.info('The directory to copy: %s;	destination: %s', directory, report_directory)
+        LOGGER.info('The directory to copy: %s;	destination: %s', directory, report_directory)
         shutil.copytree(directory, '{}/{}'.format(job.runtime.directory, report_directory))

@@ -1,4 +1,4 @@
-"""test.py for testing"""
+"""test.py for testing. Create txt files and write some info"""
 
 import os
 from pyats import aetest
@@ -13,18 +13,19 @@ class UnitTest(aetest.Testcase):
 
     @aetest.setup
     def create(self, testbed):
+        """Create directory from testbed file if it don't exist"""
         self._directory = testbed.custom.get('directory')
         if not os.path.exists(self._directory):
             os.makedirs(self._directory)
 
     @aetest.test
-    def foo(self):
+    def spam(self):
         """Write some info into txt file"""
         with open('{}/foo.txt'.format(self._directory), 'w') as file:
             file.write('Some important info: foo')
 
     @aetest.test
-    def bar(self):
+    def eggs(self):
         """Write some info into txt file"""
         with open('{}/bar.txt'.format(self._directory), 'w') as file:
             file.write('Some important info: bar')
@@ -32,6 +33,6 @@ class UnitTest(aetest.Testcase):
 
 if __name__ == '__main__':
     # load testbase file
-    testbed = loader.load(os.path.join(PROJECT_DIR, 'testbase.yaml'))
+    testbed_file = loader.load(os.path.join(PROJECT_DIR, 'testbase.yaml'))
     # run
-    aetest.main(testbed=testbed)
+    aetest.main(testbed=testbed_file)

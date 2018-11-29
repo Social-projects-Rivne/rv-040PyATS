@@ -13,11 +13,6 @@ divide = import_from_name("calculation.divide")
 class UnitTest(aetest.Testcase):
     """Main class for testing"""
 
-    @aetest.setup
-    def setup(self):
-        """Setup"""
-        pass
-
     @aetest.test
     def test_add(self, num1, num2):
         """Test calculation function add"""
@@ -36,11 +31,6 @@ class UnitTest(aetest.Testcase):
             assert result == num1 / num2
         except ZeroDivisionError:
             self.passx("Division by 0")
-
-    @aetest.cleanup
-    def cleanup(self):
-        """Cleanup"""
-        pass
 
 
 if __name__ == '__main__':

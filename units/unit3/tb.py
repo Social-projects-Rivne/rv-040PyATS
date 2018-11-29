@@ -1,4 +1,4 @@
-"""Testbed file for testing"""
+"""Tests for copy file between local and virtual machine"""
 
 import os
 from pyats import aetest
@@ -13,8 +13,8 @@ class UnitTest(aetest.Testcase):
     """Class for testing"""
 
     @aetest.setup
-    def connect(self, testbed):
-        """Set up"""
+    def setup(self, testbed):
+        """Set up local and virtual source, destination folders"""
         # self.vm = testbed.devices['vm']
         # self.vm.connect(via='sftp', alias="second")
         self.local_source = testbed.custom.get('local_source')
@@ -29,6 +29,7 @@ class UnitTest(aetest.Testcase):
             futils.copyfile(source=self.local_source,
                             destination=self.remote_destination,
                             timeout_seconds=120)
+            # Check file on sftp server. If file exists return None else error
             assert futils.checkfile(self.remote_destination) is None
 
     @aetest.test
@@ -38,17 +39,22 @@ class UnitTest(aetest.Testcase):
             futils.copyfile(source=self.remote_source,
                             destination=self.local_destination,
                             timeout_seconds=120)
-            assert os.path.isfile(self.local_destination[5:])
+            # Check is file exists on local machine
+            assert os.path.isfile(self.local_destination)
 
     @aetest.cleanup
-    def disconnect(self):
-        """tear down"""
+    def cleanup(self, testbed):
+        """Clean up test files from machines"""
         # self.vm.disconnect_all()
-        pass
+        # Delete test file from sftp server
+        with FileUtils(testbed=testbed) as futils:
+            futils.deletefile(target=self.remote_destination)
+        # Delete test file from local machine
+        os.remove(self.local_destination)
 
 
 if __name__ == '__main__':
     # load testbase file
-    testbed = loader.load(os.path.join(PROJECT_DIR, 'docker-env.yaml'))
+    testbed_file = loader.load(os.path.join(PROJECT_DIR, 'docker-env.yaml'))
     # run
-    aetest.main(testbed=testbed)
+    aetest.main(testbed=testbed_file)

@@ -1,4 +1,4 @@
-"""Testbed file for terminal running"""
+"""File for terminal running by easypy"""
 
 import os
 
