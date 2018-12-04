@@ -1,0 +1,8 @@
+devices:
+  vm:
+    connections:
+      ssh:
+        command: 'ssh -p 2222 vagrant@127.0.0.1'
+    passwords:
+      enable: vagrant
+    type: 'linux'

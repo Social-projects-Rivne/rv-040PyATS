@@ -1,3 +1,10 @@
+There is a linux VM ( 192.168.242.44 , user: pyast , pass: pyastpyast ) which is available only from Softserve's network. You need
+to create the following tests using given VM:
+copy file from the local PC into the VM
+copy file from the VM to the local PC
+You have to create testbed file which will describe your device. The tests have to be executed with easypy .
+Please use standard multiprotocol file transfer while implement the task.
+
 docker sftp image: https://hub.docker.com/r/atmoz/sftp/
 
 #docker sftp up
