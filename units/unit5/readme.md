@@ -5,20 +5,13 @@ The word parameter has to be passed to the job via either CLI argument or a test
 
 # build
 docker build -t my-tests .
-# or pull from docker hub
-docker pull ohrytsiuk/unit5:testbed
-
-# run with testbase file (unit5file)
-docker run -it my tests
-# or
-docker run -it -v <local path>:/my-tests my tests
-
-
-(old)
 # run with parametr (unit5)
 docker run -it -v <local path>:/my-tests -e word=myword123 my-tests
 # or
 docker run -it -v <local path>:/my-tests --env-file <path to file>/env.list my-tests
 
 
-
+# run with testbase file (unit5file)
+docker run -it my tests
+# or
+docker run -it -v <local path>:/my-tests my tests
