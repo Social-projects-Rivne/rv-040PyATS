@@ -2,4 +2,4 @@
 export PYTHONPATH=${PWD}
 
 #run
-easypy <path>/job.py -testbed_file <path>/testbase.yaml -configuration <path>/plugin.yaml
+easypy task_6/job.py -testbed_file task_6/testbase.yaml -configuration task_6/plugins.yaml  

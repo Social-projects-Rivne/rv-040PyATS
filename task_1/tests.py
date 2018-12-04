@@ -1,4 +1,4 @@
-"""to run: python taskone/tests.py -num1 <arg> -num2 <arg>"""
+"""to run: python task_1/tests.py -num1 <arg> -num2 <arg>"""
 
 import argparse
 import sys
@@ -43,9 +43,6 @@ class SmokeTest(aetest.Testcase):
             if result < 0:
                 self.skipped("Result less than 0")
             assert result == num1 / num2
-
-        # if num2 = 0 -> passx
-
         except ZeroDivisionError:
             self.passx("Division by 0")
 
@@ -59,15 +56,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="standalone parser")
     parser.add_argument('-num1', type=int, required=False)
     parser.add_argument('-num2', type=int, required=False)
-
-    # do the parsing
-    # always use parse_known_args, as aetest needs to parse	any
-    # remainder	arguments that this	parser does	not	understand
     args, sys.argv[1:] = parser.parse_known_args(sys.argv[1:])
 
-    # and pass all arguments to aetest.main() as kwargs
     if args.num1 is not None and args.num2 is not None:
         aetest.main(num1=args.num1, num2=args.num2)
-
     else:
         aetest.main()

@@ -1,1 +1,14 @@
-pyats>=5.0.0
+pyats.aereport==5.0.1
+pyats.aetest==5.0.0
+pyats.async==5.0.0
+pyats.connections==5.0.0
+pyats.datastructures==5.0.0
+pyats.easypy==5.0.0
+pyats.examples==5.0.0
+pyats.kleenex==5.0.0
+pyats.log==5.0.0
+pyats.results==5.0.0
+pyats.tcl==5.0.0
+pyats.templates==5.0.0
+pyats.topology==5.0.0
+pyats.utils==5.0.1
