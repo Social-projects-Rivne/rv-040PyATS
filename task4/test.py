@@ -1,8 +1,8 @@
-from pyats import aetest
 import argparse
 import sys
-from pyats.aetest import setup
+from pyats import aetest
 
+from pyats.aetest import setup
 
 mapping = {
     'a': (1, 3, 4, 5, 6, 7, 8),

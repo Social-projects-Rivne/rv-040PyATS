@@ -1,0 +1,1 @@
+for run write in terminal: easypy path/to/test_for_all_functions.py -num1 NUM1 -num2 NUM2

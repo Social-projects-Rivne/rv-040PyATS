@@ -1,0 +1,21 @@
+devices:
+  vm:
+    connections:
+      sftp:
+        command: 'sftp -P 2222 foo@127.0.0.1'
+    passwords:
+      enable: pass
+    type: 'linux'
+
+testbed:
+  servers:
+    server_alias:
+      server: myserver.domain.com
+      address: 127.0.0.1
+      username: foo
+      password: pass
+  custom:
+    local_source: '/home/pasha/Pasha/rv-040PyATS/task_my/exercise.py'
+    local_destination: '/home/pasha/Pasha/rv-040PyATS/task_my/123.py'
+    remote_source: 'sftp://server_alias:2222/upload/123.py'
+    remote_destination: 'sftp://server_alias:2222/upload/123.py'

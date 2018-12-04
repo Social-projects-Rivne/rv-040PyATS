@@ -1,0 +1,1 @@
+for run please write in terminal: python path/to/tests_for_calculation.py num1 num2 or run: python path/to/test_for_calculation.py'

@@ -1,0 +1,1 @@
+for run write in terminal: python path/to/test.py --letter <a, b or c>
