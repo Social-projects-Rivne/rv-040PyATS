@@ -13,5 +13,3 @@ pyats.tcl==5.0.0
 pyats.templates==5.0.0
 pyats.topology==5.0.0
 pyats.utils==5.0.1
-paramiko==2.4.2
-pylint==2.1.1
