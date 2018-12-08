@@ -1,0 +1,20 @@
+devices:
+  vm:
+    os: 'linux'
+    tacacs:
+      username: nevermind
+    passwords:
+      linux: nevermind
+    connections:
+      torouter:
+        ip: 127.0.0.1
+        port: 5001
+        protocol: telnet
+    type: 'linux'
+
+testbed:
+  servers:
+    server_alias:
+      address: 127.0.0.1
+      username: nevermind
+      password: nevermind
