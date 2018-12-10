@@ -1,0 +1,18 @@
+devices:
+  c3745:
+    type: 'cisco 3745'
+    os: 'cisco ios'
+    tacacs:
+      login_prompt: cisco
+      password_prompt: cisco
+      username: cisco
+    passwords:
+      tacacs: cisco
+      enable: cisco
+      line: cisco
+      linux: cisco
+    connections:
+      a:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 5000
