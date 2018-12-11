@@ -1,0 +1,7 @@
+devices:
+  c3745:
+    context: cli
+    label: c3745
+    mapping:
+      cli: vty
+      yang: netconf

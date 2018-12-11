@@ -1,0 +1,6 @@
+devices:
+  c3745:
+    1:
+      config: '/home/class/ohrytsiuk/git/rv-040PyATS/cisco/configs.yaml'
+      sleep: 1
+      invalid: ['some text']
