@@ -1,6 +1,6 @@
 devices:
   c3745:
     1:
-      config: '/home/class/ohrytsiuk/git/rv-040PyATS/cisco/configs.yaml'
+      config: '/home/class/ohrytsiuk/git/rv-040PyATS/cisco/c3745_startup-config.cfg'
       sleep: 1
       invalid: ['some text']
