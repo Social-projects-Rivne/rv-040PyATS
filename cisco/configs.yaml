@@ -1,0 +1,11 @@
+devices:
+  c3745:
+    1:
+      config: '/home/class/selen/rv-040PyATS/cisco/c3745_startup-config.cfg'
+      sleep: 1
+      invalid: ['some text']
+  c3725:
+    1:
+      config: '/home/class/selen/rv-040PyATS/cisco/c3725_startup-config.cfg'
+      sleep: 1
+      invalid: ['some text2']
