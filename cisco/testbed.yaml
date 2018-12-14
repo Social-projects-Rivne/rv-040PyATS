@@ -1,5 +1,5 @@
 devices:
-  Router1:
+  c3745:
     os: iosxe
     type: CSR1000v
     tacacs:
@@ -17,12 +17,12 @@ devices:
       a:
         protocol: telnet
         ip: 127.0.0.1
-        port: 5002
+        port: 5000
     custom:
       abstraction:
         order: [os, type]
 
-  Router2:
+  c3725:
     os: iosxe
     type: CSR1000v
     tacacs:
@@ -46,13 +46,15 @@ devices:
         order: [os, type]
 
 topology:
-  Router1:
+  c3745:
     interfaces:
       FastEthernet0/0:
-        ipv4: 192.168.1.1/24
+        ipv4: 192.168.1.10/24
+        link: link0
         type: ethernet
-  Router2:
+  c3725:
     interfaces:
       FastEthernet0/0:
         ipv4: 192.168.1.2/24
+        link: link0
         type: ethernet
