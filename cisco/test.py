@@ -37,7 +37,6 @@ class UnitTest(aetest.Testcase):
         #     # self.vm2.build_config()
         #     self.vm2.configure(config)
 
-
     @aetest.test
     def test(self):
 

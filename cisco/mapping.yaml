@@ -1,7 +1,5 @@
 devices:
-  c3745:
+  uut:
     context: cli
-    label: c3745
     mapping:
-      cli: vty
-      yang: netconf
+      cli: a

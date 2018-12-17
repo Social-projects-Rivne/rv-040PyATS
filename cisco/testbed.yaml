@@ -1,7 +1,20 @@
+testbed:
+  servers:
+    scp:
+      server: 'scp'
+      type: 'linux'
+      address: '127.0.0.1'
+      path: '/home/grant/python/rv-040PyATS/cisco/'
+      username: 'Router'
+      custom:
+        filename: '/home/grant/python/rv-040PyATS/cisco/c3745_startup-config.cfg'
+        destination: 'running config'
+
 devices:
   c3745:
     os: iosxe
     type: CSR1000v
+    alias: uut
     tacacs:
       login_prompt: cisco
       password_prompt: cisco
@@ -25,6 +38,7 @@ devices:
   c3725:
     os: iosxe
     type: CSR1000v
+    alias: c3725
     tacacs:
       login_prompt: cisco
       password_prompt: cisco
