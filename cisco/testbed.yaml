@@ -1,20 +1,58 @@
 devices:
-  vm:
-    os: 'linux'
+  Router1:
+    os: iosxe
+    type: CSR1000v
     tacacs:
-      username: nevermind
+      login_prompt: cisco
+      password_prompt: cisco
+      username: cisco
     passwords:
-      linux: nevermind
+      tacacs: cisco
+      enable: cisco
+      line: cisco
+      linux: cisco
     connections:
-      torouter:
+      defaults:
+        class: 'unicon.Unicon'
+      a:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 5000
+    custom:
+      abstraction:
+        order: [os, type]
+
+  Router2:
+    os: iosxe
+    type: CSR1000v
+    tacacs:
+      login_prompt: cisco
+      password_prompt: cisco
+      username: cisco
+    passwords:
+      tacacs: cisco
+      enable: cisco
+      line: cisco
+      linux: cisco
+    connections:
+      defaults:
+        class: 'unicon.Unicon'
+      a:
+        protocol: telnet
         ip: 127.0.0.1
         port: 5001
-        protocol: telnet
-    type: 'linux'
+    custom:
+      abstraction:
+        order: [os, type]
 
-testbed:
-  servers:
-    server_alias:
-      address: 127.0.0.1
-      username: nevermind
-      password: nevermind
+topology:
+  Router1:
+    interfaces:
+      FastEthernet0/0:
+        ipv4: 192.168.1.1/24
+        type: ethernet
+  Router2:
+    interfaces:
+      FastEthernet0/0:
+        ipv4: 192.168.1.2/24
+        type: ethernet
