@@ -13,4 +13,4 @@ def main():
          trigger_uids=Or('TriggerSleep'),
          verification_uids=Or('Verify_InterfaceBrief'))
 
-# easypy <job file>.py -testbed_file <path to testbed file>
+    # easypy <job file>.py -testbed_file <path to testbed file>
