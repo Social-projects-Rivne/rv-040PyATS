@@ -1,0 +1,60 @@
+devices:
+  c3725:
+    os: iosxe
+    type: CSR1000v
+    alias: c3725
+    tacacs:
+      login_prompt: cisco
+      password_prompt: cisco
+      username: cisco
+    passwords:
+      tacacs: cisco
+      enable: cisco
+      line: cisco
+      linux: cisco
+    connections:
+      defaults:
+        class: 'unicon.Unicon'
+      a:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 5000
+    custom:
+      abstraction:
+        order: [os, type]
+
+  c3745:
+    os: iosxe
+    type: CSR1000v
+    alias: c3745
+    tacacs:
+      login_prompt: cisco
+      password_prompt: cisco
+      username: cisco
+    passwords:
+      tacacs: cisco
+      enable: cisco
+      line: cisco
+      linux: cisco
+    connections:
+      defaults:
+        class: 'unicon.Unicon'
+      a:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 5001
+    custom:
+      abstraction:
+        order: [os, type]
+
+topology:
+  c3745:
+    interfaces:
+      FastEthernet0/0:
+        ipv4: 192.168.1.1/24
+        type: ethernet
+  c3725:
+    interfaces:
+      FastEthernet0/0:
+        ipv4: 192.168.1.2/24
+        type: ethernet
