@@ -1,6 +1,6 @@
 devices:
   uut:
     1:
-      config: '/home/grant/python/rv-040PyATS/cisco/c3745_startup-config.cfg'
+      config: 'c3745_confg'
       sleep: 0
-      invalid: ['some text']
+      invalid: ['!']

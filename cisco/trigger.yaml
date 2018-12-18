@@ -1,0 +1,14 @@
+ShowBgpSessionsVrfAll:
+    groups: ['Cli', 'Xml']
+    context1: 'cli'
+    context2: 'xml'
+    exclude: ['last_read', 'last_write', 'last_flap']
+    cmd:
+        pkg: genie.libs.parser
+        class: show_bgp.ShowBgpSessions
+        parameters:
+            vrf: 'all'
+    source:
+        class: trigger.Comparator
+    devices:
+       uut: [c3745]

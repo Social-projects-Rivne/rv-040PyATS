@@ -1,0 +1,40 @@
+#Verify_uut:
+#  source:
+#    pkg: genie
+#    class: ops.ospf.ospf.Ospf
+#  exclude: [<list of generic keys to ignore in the comparison>]
+#  devices: [uut]
+#  iteration:
+#    attempt: 2
+#    interval: 10
+
+#Verify_IpInterfaceBrief:
+#  source:
+#    pkg: genie
+#    class: ops.ospf.ospf.Ospf
+#  exclude: ['method']
+#  devices: ['uut']
+
+#Verify_InterfaceBrief:
+#  cmd:
+#    class: show_interface.ShowInterfaceBrief
+#    pkg: genie.libs.parser
+#  context: cli
+#  source:
+#    class: genie.harness.base.Template
+#
+#Verify_Interface:
+#  cmd:
+#    class: show_interface.ShowInterface
+#    pkg: genie.libs.parser
+#  context: cli
+#  source:
+#    class: genie.harness.base.Template
+
+Verify_Interfaces:
+  cmd:
+    class: show_interface.ShowInterfaces
+    pkg: genie.libs.parser
+  context: cli
+  source:
+    class: genie.harness.base.Template

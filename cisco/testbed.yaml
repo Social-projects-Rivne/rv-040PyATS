@@ -1,14 +1,12 @@
 testbed:
   servers:
-    scp:
-      server: 'scp'
-      type: 'linux'
-      address: '127.0.0.1'
-      path: '/home/grant/python/rv-040PyATS/cisco/'
-      username: 'Router'
-      custom:
-        filename: '/home/grant/python/rv-040PyATS/cisco/c3745_startup-config.cfg'
-        destination: 'running config'
+    tftp:
+      server: tftp
+      type: linux
+      address: 192.168.122.1
+      path: '/tftpboot'
+      username: cisco
+      password: cisco
 
 devices:
   c3745:
@@ -63,9 +61,10 @@ topology:
   c3745:
     interfaces:
       FastEthernet0/0:
-        ipv4: 192.168.1.10/24
-        link: link0
         type: ethernet
+        alias: FastEthernet0/0
+        link: link0
+        ipv4: 192.168.1.1/24
   c3725:
     interfaces:
       FastEthernet0/0:

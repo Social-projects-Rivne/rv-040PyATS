@@ -29,26 +29,46 @@ class UnitTest(aetest.Testcase):
         #     # CliConfig(device=self.vm1, unconfig=False, cli_config=config)
         #     # self.vm1.build_config()
 
-        self.vm2 = self.testbed.devices['c3725']
-        self.vm2.connect(via='a')
+        # self.vm2 = self.testbed.devices['c3725']
+        # self.vm2.connect(via='a')
         # with open('c3725_startup-config.cfg', 'r') as file:
         #     config = file.read()
         #     # CliConfig(device=self.vm2, unconfig=True, cli_config=config)
         #     # self.vm2.build_config()
         #     self.vm2.configure(config)
 
+    def interfaces(self, int):
+        '''Method for verifying if the interface is up
+
+           Return none if the states are the one is expected
+           Raise an exception if the states are not the one expected
+        '''
+
+        try:
+            # interfaces = ospf.info['vrf'][vrf_name]['address_family']['ipv4']['instance'][ospf_name]['areas'][area][
+            #     'interfaces']
+            interfaces = int.info
+        except KeyError:
+            return
+
+        # for intf in interfaces.values():
+        #     assert intf['enable'] == True
+        assert True
+
     @aetest.test
     def test(self):
 
         interfaces = Interface(device=self.vm1)
         interfaces.learn()
-        # pprint(intf1.info)
+        # # pprint(intf1.info)
 
-        for interface, value in interfaces.info.items():
-            if interface in self.vm1.interfaces:
-                pass
+        interfaces.learn_poll(verify=self.interfaces, sleep=30, attempt=5)
 
-        links = self.vm1.find_links(self.vm2)
+        # for interface, value in interfaces.info.items():
+        #     if interface in self.vm1.interfaces:
+        #         pass
+
+        # links = self.vm1.find_links(self.vm2)
 
         # abstract1 = Lookup.from_device(self.vm1)
         # intf1 = abstract1.ops.interface.interface.Interface(self.vm1)
@@ -86,8 +106,9 @@ class UnitTest(aetest.Testcase):
 
     @aetest.cleanup
     def cleanup(self, testbed):
-        self.vm1.disconnect()
-        self.vm2.disconnect()
+        # self.vm1.disconnect()
+        # self.vm2.disconnect()
+        pass
 
 
 if __name__ == '__main__':

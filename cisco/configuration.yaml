@@ -1,5 +1,0 @@
-plugins:
-  test:
-    module: test
-    interval: 30
-    devices: [c3745]
