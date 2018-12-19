@@ -7,6 +7,7 @@ import re
 from pyats import aetest
 from genie.conf import Genie
 from pyats.topology import loader
+from unicon.core.errors import SubCommandFailure
 
 PROJECT_DIR = os.path.dirname(__file__)
 
@@ -42,7 +43,7 @@ class UnitTest(aetest.Testcase):
         try:
             result = self.vm1.ping(destination)
 
-        except Exception as e:
+        except SubCommandFailure as e:
             self.failed('Ping {} from device {} failed with error: {}'.format(
                 destination,
                 self.vm1,
@@ -54,6 +55,7 @@ class UnitTest(aetest.Testcase):
             success_rate = match.group('rate')
 
             logger.info('Ping {} with success rate of {}%'.format(destination, success_rate))
+
 
     @aetest.cleanup
     def cleanup(self):
