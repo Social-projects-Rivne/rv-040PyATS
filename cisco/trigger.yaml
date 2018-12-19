@@ -11,4 +11,4 @@ ShowBgpSessionsVrfAll:
     source:
         class: trigger.Comparator
     devices:
-       uut: [c3745]
+       uut: [c3745, c3725]

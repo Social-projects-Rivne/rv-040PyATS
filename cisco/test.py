@@ -29,44 +29,39 @@ class UnitTest(aetest.Testcase):
         #     # CliConfig(device=self.vm1, unconfig=False, cli_config=config)
         #     # self.vm1.build_config()
 
-        # self.vm2 = self.testbed.devices['c3725']
-        # self.vm2.connect(via='a')
+        self.vm2 = self.testbed.devices['c3725']
+        self.vm2.connect(via='a')
         # with open('c3725_startup-config.cfg', 'r') as file:
         #     config = file.read()
+        #     self.vm2.configure(config)
         #     # CliConfig(device=self.vm2, unconfig=True, cli_config=config)
         #     # self.vm2.build_config()
-        #     self.vm2.configure(config)
 
-    def interfaces(self, int):
-        '''Method for verifying if the interface is up
-
-           Return none if the states are the one is expected
-           Raise an exception if the states are not the one expected
-        '''
+    def interfaces(self, ints):
+        """Method for verifying interfaces"""
 
         try:
-            # interfaces = ospf.info['vrf'][vrf_name]['address_family']['ipv4']['instance'][ospf_name]['areas'][area][
-            #     'interfaces']
-            interfaces = int.info
+            if ints.device.alias is self.vm1.alias:
+                for interface, value in ints.info.items():
+                    if interface in self.vm1.interfaces:
+                        assert str(self.vm1.interfaces[interface].ipv4.ip) in str(value.get('ipv4').keys())
+            elif ints.device.alias is self.vm2.alias:
+                for interface, value in ints.info.items():
+                    if interface in self.vm2.interfaces:
+                        assert str(self.vm2.interfaces[interface].ipv4.ip) in str(value.get('ipv4').keys())
         except KeyError:
-            return
-
-        # for intf in interfaces.values():
-        #     assert intf['enable'] == True
-        assert True
+            assert False
 
     @aetest.test
-    def test(self):
+    def verify_interfaces(self):
 
-        interfaces = Interface(device=self.vm1)
-        interfaces.learn()
-        # # pprint(intf1.info)
+        interfaces_vm1 = Interface(device=self.vm1)
+        interfaces_vm1.learn()
+        interfaces_vm1.learn_poll(verify=self.interfaces, sleep=30, attempt=5)
 
-        interfaces.learn_poll(verify=self.interfaces, sleep=30, attempt=5)
-
-        # for interface, value in interfaces.info.items():
-        #     if interface in self.vm1.interfaces:
-        #         pass
+        interfaces_vm2 = Interface(device=self.vm2)
+        interfaces_vm2.learn()
+        interfaces_vm2.learn_poll(verify=self.interfaces, sleep=30, attempt=5)
 
         # links = self.vm1.find_links(self.vm2)
 
@@ -75,44 +70,25 @@ class UnitTest(aetest.Testcase):
         # intf1.learn()
         # pprint(intf1.info)
 
-        # with open('c3745', 'wb') as f:
-        #     f.write(intf1.pickle())
+    @aetest.test
+    def ping_ftp(self):
+        """ping"""
 
-        # abstract2 = Lookup.from_device(self.vm2)
-        # intf2 = abstract2.ops.interface.interface.Interface(self.vm2)
-        # intf2.learn()
-        # pprint(intf2.info)
-        # # with open('c3725', 'wb') as f:
-        # #     f.write(intf2.pickle())
-
-        # result1 = self.vm1.execute('show version')
-
-        # # print(self.vm1.ping('192.168.1.1'))
-        # print("olala")
-        #
-        # for name, device in self.testbed.devices.items():
-        #
-        #     device.connect()
-        #     abstract = Lookup.from_device(device)
-        #     intf = abstract.ops.interface.interface.Interface(device)
-        #     intf.learn()
-        #     pprint(intf.info)
-        #
-        #     for str_intf in intf.info:
-        #         if intf.info[str_intf].get('oper_status', None) and intf.info[str_intf]['oper_status'] == 'up':
-        #             assert True
-        #         else:
-        #             assert False
+        try:
+            assert self.vm1.ping(self.testbed.servers.tftp.get('address'))
+            assert self.vm2.ping(self.testbed.servers.tftp.get('address'))
+        except Exception:
+            assert False
 
     @aetest.cleanup
-    def cleanup(self, testbed):
-        # self.vm1.disconnect()
-        # self.vm2.disconnect()
-        pass
+    def cleanup(self):
+        self.vm1.disconnect()
+        self.vm2.disconnect()
 
 
 if __name__ == '__main__':
     # load testbase file
     testbed_file = loader.load(os.path.join(PROJECT_DIR, 'testbed.yaml'))
+    testbed123 = Genie.init(testbed_file)
     # run
     aetest.main(testbed=testbed_file)

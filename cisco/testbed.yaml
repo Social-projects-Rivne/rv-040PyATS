@@ -36,7 +36,7 @@ devices:
   c3725:
     os: iosxe
     type: CSR1000v
-    alias: c3725
+    alias: uut1
     tacacs:
       login_prompt: cisco
       password_prompt: cisco
@@ -63,11 +63,12 @@ topology:
       FastEthernet0/0:
         type: ethernet
         alias: FastEthernet0/0
-        link: link0
-        ipv4: 192.168.1.1/24
+#        link: link0
+        ipv4: 192.168.122.2/24
   c3725:
     interfaces:
       FastEthernet0/0:
-        ipv4: 192.168.1.2/24
-        link: link0
         type: ethernet
+        alias: FastEthernet0/0
+#        link: link0
+        ipv4: 192.168.122.3/24
