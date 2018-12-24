@@ -19,27 +19,26 @@ class UnitTest(aetest.Testcase):
 
     @aetest.setup
     def setup(self, testbed):
-        """Set up"""
+        """Set up and connect to devices and load config"""
         self.testbed = Genie.init(testbed)
         self.vm1 = self.testbed.devices['c3745']
         self.vm1.connect(via='a')
-        # with open('c3745_startup-config.cfg', 'r') as file:
-        #     config = file.read()
-        #     self.vm1.configure(config)
-        #     # CliConfig(device=self.vm1, unconfig=False, cli_config=config)
-        #     # self.vm1.build_config()
+        with open('c3745', 'r') as file:
+            config = file.read()
+            self.vm1.configure(config)
+            # CliConfig(device=self.vm1, unconfig=False, cli_config=config)
+            # self.vm1.build_config()
 
         self.vm2 = self.testbed.devices['c3725']
         self.vm2.connect(via='a')
-        # with open('c3725_startup-config.cfg', 'r') as file:
-        #     config = file.read()
-        #     self.vm2.configure(config)
-        #     # CliConfig(device=self.vm2, unconfig=True, cli_config=config)
-        #     # self.vm2.build_config()
+        with open('c3725', 'r') as file:
+            config = file.read()
+            self.vm2.configure(config)
+            # CliConfig(device=self.vm2, unconfig=True, cli_config=config)
+            # self.vm2.build_config()
 
     def interfaces(self, ints):
         """Method for verifying interfaces"""
-
         try:
             if ints.device.alias is self.vm1.alias:
                 for interface, value in ints.info.items():
@@ -54,6 +53,7 @@ class UnitTest(aetest.Testcase):
 
     @aetest.test
     def verify_interfaces(self):
+        """verify interfaces from config and device"""
 
         interfaces_vm1 = Interface(device=self.vm1)
         interfaces_vm1.learn()
@@ -72,7 +72,7 @@ class UnitTest(aetest.Testcase):
 
     @aetest.test
     def ping_ftp(self):
-        """ping"""
+        """ping test tftp server"""
 
         try:
             assert self.vm1.ping(self.testbed.servers.tftp.get('address'))
@@ -82,6 +82,7 @@ class UnitTest(aetest.Testcase):
 
     @aetest.cleanup
     def cleanup(self):
+        """Clean up and disconnect from devices"""
         self.vm1.disconnect()
         self.vm2.disconnect()
 
@@ -89,6 +90,5 @@ class UnitTest(aetest.Testcase):
 if __name__ == '__main__':
     # load testbase file
     testbed_file = loader.load(os.path.join(PROJECT_DIR, 'testbed.yaml'))
-    testbed123 = Genie.init(testbed_file)
     # run
     aetest.main(testbed=testbed_file)
