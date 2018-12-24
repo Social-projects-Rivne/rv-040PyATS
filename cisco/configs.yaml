@@ -1,11 +1,15 @@
 devices:
   uut:
     1:
-      config: 'c3745'
+      config: 'c3745-confg'
       sleep: 3
       invalid: ['!']
   uut1:
     2:
-      config: 'c3725'
+      config: 'c3725-confg'
       sleep: 3
       invalid: ['!']
+  uut2:
+    3:
+      config: 'big-config'
+      sleep: 3
