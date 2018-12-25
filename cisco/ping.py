@@ -12,7 +12,7 @@ from unicon.core.errors import SubCommandFailure
 PROJECT_DIR = os.path.dirname(__file__)
 
 
-class UnitTest(aetest.Testcase):
+class RouterTest(aetest.Testcase):
     """Class for testing"""
 
     @aetest.setup
@@ -33,7 +33,16 @@ class UnitTest(aetest.Testcase):
             self.vm2.configure(config)
 
     @aetest.test
-    def test(self):
+    def test_interfaces(self):
+        interface_c3745 = self.vm1.execute("show ip int brief | include FastEthernet0/0")
+        ipv4_c3745 = interface_c3745.split()[1]
+        assert ipv4_c3745 == str(self.vm1.interfaces['FastEthernet0/0'].ipv4)[:-3]
+        interface_c3725 = self.vm2.execute("show ip int brief | include FastEthernet0/0")
+        ipv4_c3725 = interface_c3725.split()[1]
+        assert ipv4_c3725 == str(self.vm2.interfaces['FastEthernet0/0'].ipv4)[:-3]
+
+    @aetest.test
+    def ping(self):
         """Ping"""
 
         destination = str(self.vm2.interfaces['FastEthernet0/0'].ipv4)[:-3]
