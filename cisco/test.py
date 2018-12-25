@@ -1,19 +1,11 @@
 """cisco tests"""
 
 import os
-# from pprint import pprint
 from pyats import aetest
 import logging
-
-# from genie.abstract import Lookup
 from genie.conf import Genie
 import re
-# from genie.conf.base.config import CliConfig
 from pyats.topology import loader
-from unicon.eal.expect import Spawn, TimeoutError
-from unicon.eal.dialogs import Statement, Dialog
-# from genie.libs import ops
-# from genie.libs.ops.interface.iosxe.interface import Interface
 
 PROJECT_DIR = os.path.dirname(__file__)
 
@@ -39,12 +31,12 @@ class UnitTest(aetest.Testcase):
 
     @aetest.test
     def test_interfaces(self):
-        interface_c3745 = self.vm1.execute("show ip int brief")
-        ipv4_c3745 = interface_c3745.split("\r")[1]
-        assert ipv4_c3745.split(' ')[12] == str(self.vm1.interfaces['FastEthernet0/0'].ipv4)[:-3]
-        interface_c3725 = self.vm2.execute("show ip int brief")
-        ipv4_c3725 = interface_c3725.split("\r")[1]
-        assert ipv4_c3725.split(' ')[12] == str(self.vm2.interfaces['FastEthernet0/0'].ipv4)[:-3]
+        interface_c3745 = self.vm1.execute("show ip int brief | include FastEthernet0/0")
+        ipv4_c3745 = interface_c3745.split()[1]
+        assert ipv4_c3745 == str(self.vm1.interfaces['FastEthernet0/0'].ipv4)[:-3]
+        interface_c3725 = self.vm2.execute("show ip int brief | include FastEthernet0/0")
+        ipv4_c3725 = interface_c3725.split()[1]
+        assert ipv4_c3725 == str(self.vm2.interfaces['FastEthernet0/0'].ipv4)[:-3]
 
     @aetest.test
     def ping_one(self):
