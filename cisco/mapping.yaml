@@ -1,12 +1,15 @@
 devices:
+  # c3745
   uut:
     context: cli
     mapping:
       cli: a
-#  uut1:
-#    context: cli
-#    mapping:
-#      cli: a
+  # c3725
+  uut1:
+    context: cli
+    mapping:
+      cli: a
+#  # ASA
 #  uut2:
 #    context: cli
 #    mapping:

@@ -28,7 +28,7 @@ devices:
       a:
         protocol: telnet
         ip: 127.0.0.1
-        port: 5000
+        port: 5004
     custom:
       abstraction:
         order: [os, type]
@@ -52,7 +52,7 @@ devices:
       a:
         protocol: telnet
         ip: 127.0.0.1
-        port: 5001
+        port: 5003
     custom:
       abstraction:
         order: [os, type]
@@ -61,10 +61,9 @@ devices:
 # UnsupportedDeviceOsWarning: Device asa OS 'asa' is not supported;
 # Extended Device functionality will not be available:
 # No module named 'genie.libs.conf.device.asa
-
   asa:
-    os: iosxe
-    type: asa
+    os: asa
+    type: CSR1000v
     alias: uut2
     tacacs:
       login_prompt: cisco
@@ -72,7 +71,7 @@ devices:
       username: cisco
     passwords:
       tacacs: cisco
-      enable: cisco
+      enable: ''
       line: cisco
       linux: cisco
     connections:

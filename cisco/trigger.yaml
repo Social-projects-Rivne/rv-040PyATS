@@ -30,4 +30,4 @@ TriggerShutNoShutEthernetInterface:
        interval: 10
     tgn_timeout: 300
     tgn_delay: 10
-    devices: [[c3745, c3725]
+    devices: [c3745, c3725]

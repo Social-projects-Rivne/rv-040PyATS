@@ -1,15 +1,18 @@
 devices:
+  # c3745
   uut:
     1:
       config: 'c3745'
       sleep: 3
       invalid: ['!']
+  # c3725
   uut1:
     2:
       config: 'c3725'
       sleep: 3
       invalid: ['!']
-  uut2:
-    3:
-      config: 'big-config'
-      sleep: 3
+#  # ASA
+#  uut2:
+#    3:
+#      config: 'running-config'
+#      sleep: 3
