@@ -28,7 +28,7 @@ devices:
       a:
         protocol: telnet
         ip: 127.0.0.1
-        port: 5002
+        port: 5000
     custom:
       abstraction:
         order: [os, type]
@@ -57,8 +57,13 @@ devices:
       abstraction:
         order: [os, type]
 
+
+# UnsupportedDeviceOsWarning: Device asa OS 'asa' is not supported;
+# Extended Device functionality will not be available:
+# No module named 'genie.libs.conf.device.asa
+
   asa:
-    os: asa
+    os: iosxe
     type: asa
     alias: uut2
     tacacs:

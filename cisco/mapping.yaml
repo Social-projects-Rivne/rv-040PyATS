@@ -3,11 +3,11 @@ devices:
     context: cli
     mapping:
       cli: a
-  uut1:
-    context: cli
-    mapping:
-      cli: a
-  uut2:
-    context: cli
-    mapping:
-      cli: a
+#  uut1:
+#    context: cli
+#    mapping:
+#      cli: a
+#  uut2:
+#    context: cli
+#    mapping:
+#      cli: a

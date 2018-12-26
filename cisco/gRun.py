@@ -1,6 +1,8 @@
+"""job file for running within easypy"""
+
 import os
 
-from ats.datastructures.logic import And, Not, Or
+from pyats.datastructures.logic import And, Not, Or
 from genie.harness.main import gRun
 
 
@@ -17,9 +19,7 @@ def main():
          # pts_features=['interface'],
          # trigger_datafile=os.path.join(test_path, 'trigger.yaml'),
          verification_uids=Or('Verify_Interfaces'),
+         trigger_uids=Or('TriggerUnconfigConfigEthernetInterface'),
          subsection_datafile=os.path.join(test_path, 'subsection.yaml'),
          filetransfer_protocol='tftp'
          )
-
-# easypy <job file>.py -testbed_file <path to testbed file>
-# easypy gRun.py -testbed_file testbed.yaml

@@ -3,12 +3,8 @@
 import os
 from pyats import aetest
 
-from genie.abstract import Lookup
 from genie.conf import Genie
-from genie.conf.base.config import CliConfig
 from pyats.topology import loader
-from genie.libs import ops
-from genie.libs.ops.interface.iosxe.interface import Interface
 
 PROJECT_DIR = os.path.dirname(__file__)
 
@@ -21,11 +17,10 @@ class UnitTest(aetest.Testcase):
         """Set up and connect to devices and load config"""
         self.testbed = Genie.init(testbed)
         self.vm1 = self.testbed.devices['asa']
-        # self.vm1.connect(via='a')
-        # create config
-        with open('big_config', 'w+') as file:
-            for i in range(1000000):
-                file.writelines("!Line " + str(i) + '\n')
+        self.vm1.connect(via='a')
+        with open('running-config', 'r') as file:
+            config = file.read()
+            self.vm1.configure(config)
 
     @aetest.cleanup
     def cleanup(self):

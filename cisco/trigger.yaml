@@ -12,3 +12,22 @@ ShowBgpSessionsVrfAll:
         class: trigger.Comparator
     devices:
        uut: [c3745, c3725]
+
+TriggerUnconfigConfigEthernetInterface:
+    groups: ['unconfig-config', 'interface', 'L2']
+    method: 'checkpoint'
+    timeout:
+       max_time: 180
+       interval: 10
+    tgn_timeout: 300
+    tgn_delay: 10
+    devices: [c3745, c3725]
+
+TriggerShutNoShutEthernetInterface:
+    groups: ['shut', 'interface', 'L3']
+    timeout:
+       max_time: 180
+       interval: 10
+    tgn_timeout: 300
+    tgn_delay: 10
+    devices: [[c3745, c3725]
