@@ -1,0 +1,1 @@
+echo $(easypy gRun.py -testbed_file testbed.yaml)

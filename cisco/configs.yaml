@@ -2,13 +2,13 @@ devices:
   # c3745
   uut:
     1:
-      config: 'c3745'
+      config: 'c3745-confg'
       sleep: 3
       invalid: ['!']
   # c3725
   uut1:
     2:
-      config: 'c3725'
+      config: 'c3725-confg'
       sleep: 3
       invalid: ['!']
 #  # ASA
